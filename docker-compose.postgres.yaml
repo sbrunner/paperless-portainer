@@ -1,0 +1,30 @@
+# In addition to that, this docker-compose file adds the following optional
+# configurations:
+#
+# - Instead of SQLite (default), PostgreSQL is used as the database server.
+
+version: '3.4'
+services:
+  broker:
+    extends:
+      file: docker-compose.lib.yaml
+      service: redis
+
+  db:
+    extends:
+      file: docker-compose.lib.yaml
+      service: postgres
+
+  paperless:
+    extends:
+      file: docker-compose.lib.yaml
+      service: paperless
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+
+volumes:
+  data:
+  media:
+  pgdata:
+  redisdata:

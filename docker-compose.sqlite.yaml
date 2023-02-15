@@ -1,0 +1,22 @@
+# SQLite is used as the database. The SQLite file is stored in the data volume.
+
+version: '3.4'
+services:
+  broker:
+    extends:
+      file: docker-compose.lib.yaml
+      service: redis
+
+  paperless:
+    extends:
+      file: docker-compose.lib.yaml
+      service: paperless
+    depends_on:
+      - broker
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+
+volumes:
+  data:
+  media:
+  redisdata:
