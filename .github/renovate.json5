@@ -1,0 +1,39 @@
+{
+  extends: ['config:base'],
+  timezone: 'Europe/Zurich',
+  schedule: 'on the first day of the month',
+  labels: ['dependencies'],
+  separateMajorMinor: true,
+  prHourlyLimit: 0,
+  prConcurrentLimit: 0,
+  lockFileMaintenance: {
+    enabled: true,
+    automerge: true,
+    schedule: 'on the first day of the month',
+  },
+  'pre-commit': { enabled: true },
+  regexManagers: [
+    {
+      fileMatch: ['.*/.env$'],
+      matchStrings: ['_TAG=(?<currentValue>[^\\s]+) +# (?<depName>[^\\s]+)'],
+      datasourceTemplate: 'docker',
+    },
+  ],
+  packageRules: [
+    /** Automerge the patch, the minor and the dev dependency */
+    {
+      matchBaseBranches: ['master'],
+      matchUpdateTypes: ['minor', 'patch'],
+      automerge: true,
+    },
+    {
+      matchDepTypes: ['devDependencies'],
+      automerge: true,
+    },
+    /** Group the patch and the minor */
+    {
+      matchUpdateTypes: ['minor', 'patch'],
+      groupName: 'all patch versions',
+    },
+  ],
+}
