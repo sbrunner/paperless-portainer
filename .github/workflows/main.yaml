@@ -30,7 +30,8 @@ jobs:
       - run: git diff
         if: failure()
 
-      - run: docker compose --file=docker-compose.postgres.yaml up --detach
+      - run: docker-compose --file=docker-compose.postgres.yaml up --detach
+      - run: sleep 15
       - run: curl --fail --retry 10 --retry-delay 5 --retry-connrefused http://localhost:8000
-      - run: docker compose --file=docker-compose.postgres.yaml logs
+      - run: docker-compose --file=docker-compose.postgres.yaml logs
         if: failure()

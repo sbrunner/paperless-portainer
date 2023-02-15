@@ -10,7 +10,7 @@ services:
       - ${REDIS_DATA_VOLUME}:/data
 
   postgres:
-    image: docker.io/library/postgres:13.0.0
+    image: docker.io/library/postgres:13.0
     restart: unless-stopped
     volumes:
       - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
@@ -21,12 +21,6 @@ services:
       - POSTGRES_INITDB_ARGS
       - POSTGRES_INITDB_WALDIR
       - POSTGRES_HOST_AUTH_METHOD
-      - PGDATA
-        # To be able to use psql directly
-      - PGDATABASE=paperless
-      - PGUSER=paperless
-      - PGPASSWORD=paperless
-      - PGHOST=localhost
 
   mariadb:
     image: docker.io/library/mariadb:10.10.3
