@@ -4,13 +4,13 @@
 version: '3.4'
 services:
   redis:
-    image: docker.io/library/redis:7.0.8
+    image: docker.io/library/redis:7.0.9
     restart: unless-stopped
     volumes:
       - ${REDIS_DATA_VOLUME}:/data
 
   postgres:
-    image: docker.io/library/postgres:13.0
+    image: docker.io/library/postgres:13.10
     restart: unless-stopped
     volumes:
       - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
@@ -23,7 +23,7 @@ services:
       - POSTGRES_HOST_AUTH_METHOD
 
   mariadb:
-    image: docker.io/library/mariadb:10.10.3
+    image: docker.io/library/mariadb:10.11.2
     restart: unless-stopped
     volumes:
       - ${MARIADB_DATA_VOLUME}:/var/lib/mysql
@@ -44,7 +44,7 @@ services:
       - MARIADB_DISABLE_UPGRADE_BACKUP
 
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:1.12.2
+    image: ghcr.io/paperless-ngx/paperless-ngx:1.13.0
     restart: unless-stopped
     ports:
       - ${PAPERLESS_PORT}:${PAPERLESS_INNER_PORT}
@@ -174,7 +174,7 @@ services:
       - OMP_ALLOCATOR
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:7.8.0
+    image: docker.io/gotenberg/gotenberg:7.8.1
     restart: unless-stopped
     # The gotenberg chromium route is used to convert .eml files. We do not
     # want to allow external content like tracking pixels or even javascript.
