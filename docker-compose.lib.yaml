@@ -12,10 +12,8 @@ services:
   postgres:
     image: docker.io/library/postgres:15.2
     restart: unless-stopped
-    entrypoint: /upgrade/docker-upgrade-entrypoint-wrapper.sh
     volumes:
       - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
-      - './postgres/upgrade:/upgrade:ro'
     environment:
       - POSTGRES_DB
       - POSTGRES_USER
