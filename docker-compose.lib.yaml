@@ -26,6 +26,7 @@ services:
     image: tianon/postgres-upgrade:${POSTGRES_UPGRADE_OLD}-to-${POSTGRES_UPGRADE_NEW}
     command:
       - ${POSTGRES_UPGRADE_COMMAND}
+      - --link
     volumes:
       - ${POSTGRES_UPGRADE_OLD_VOLUME}:/var/lib/postgresql/${POSTGRES_UPGRADE_OLD}/data
       - ${POSTGRES_UPGRADE_NEW_VOLUME}:/var/lib/postgresql/${POSTGRES_UPGRADE_NEW}/data
