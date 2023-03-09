@@ -46,21 +46,19 @@ Configure the following environment variables:
 
 1. Create a new folder for the new database data.
 
-2. Use-it in the db service, Upgrade the composition
+2. Use-it in the db service, set the `POSTGRES_UPGRADE_COMMAND` environment variable to `pg_upgrade`, Upgrade the composition.
 
-3. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `pg_upgrade`.
-
-4. Drop the create database on the `db` service with:
+3. Drop the create database on the `db` service with:
 
     ```bash
     psql --username="${POSTHRES_USER}" --command="CREATE DATABASE tmp;"
     psql --username="${POSTHRES_USER}" --dbname=tmp --command="DROP DATABASE ${POSTGRES_DB};"
     ```
 
-5. Stop the `db` service and start the `postgres-upgrade` service.
+4. Stop the `db` service and start the `postgres-upgrade` service.
 
-6. Wait for the upgrade to finish.
+5. Wait for the upgrade to finish.
 
-7. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`.
+6. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`, Upgrade the composition
 
-8. Start the `db` service.
+7. Start the `db` service.
