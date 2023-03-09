@@ -19,6 +19,11 @@ services:
       file: docker-compose.lib.yaml
       service: postgres
 
+  postgres-upgrade:
+    extends:
+      file: docker-compose.lib.yaml
+      service: postgres-upgrade
+
   paperless:
     extends:
       file: docker-compose.lib.yaml
@@ -50,3 +55,10 @@ volumes:
   media:
   pgdata:
   redisdata:
+  pgdata-9:
+  pgdata-10:
+  pgdata-11:
+  pgdata-12:
+  pgdata-13:
+  pgdata-14:
+  pgdata-15:

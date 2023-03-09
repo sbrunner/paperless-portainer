@@ -17,12 +17,21 @@ services:
       - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
       - './postgres/upgrade:/upgrade:ro'
     environment:
-      - POSTGRES_DB=paperless
-      - POSTGRES_USER=paperless
-      - POSTGRES_PASSWORD=paperless
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
       - POSTGRES_INITDB_ARGS
       - POSTGRES_INITDB_WALDIR
       - POSTGRES_HOST_AUTH_METHOD
+
+  postgres-upgrade:
+    image: /var/lib/postgresql tianon/postgres-upgrade:${PG_OLD}-to-${PG_NEW}
+    volumes:
+      - ${PG_OLD_VOLUME}:/var/lib/postgresql/${PG_OLD}/data
+      - ${PG_NEW_VOLUME}:/var/lib/postgresql/${PG_NEW}/data
+    environment:
+      - PGUSER=${POSTGRES_USER}
+      - PGPASSWORD=${POSTGRES_PASSWORD}
 
   mariadb:
     image: docker.io/library/mariadb:10.11.2
