@@ -23,10 +23,12 @@ services:
       - POSTGRES_HOST_AUTH_METHOD
 
   postgres-upgrade:
-    image: tianon/postgres-upgrade:${PG_OLD}-to-${PG_NEW}
+    image: tianon/postgres-upgrade:${POSTGRES_UPGRADE_OLD}-to-${POSTGRES_UPGRADE_NEW}
+    command:
+      - ${POSTGRES_UPGRADE_COMMAND}
     volumes:
-      - ${PG_OLD_VOLUME}:/var/lib/postgresql/${PG_OLD}/data
-      - ${PG_NEW_VOLUME}:/var/lib/postgresql/${PG_NEW}/data
+      - ${POSTGRES_UPGRADE_OLD_VOLUME}:/var/lib/postgresql/${POSTGRES_UPGRADE_OLD}/data
+      - ${POSTGRES_UPGRADE_NEW_VOLUME}:/var/lib/postgresql/${POSTGRES_UPGRADE_NEW}/data
     environment:
       - PGUSER=${POSTGRES_USER}
       - PGPASSWORD=${POSTGRES_PASSWORD}
