@@ -30,6 +30,7 @@ services:
     environment:
       - PGUSER=${POSTGRES_USER}
       - PGPASSWORD=${POSTGRES_PASSWORD}
+      - PGDATABASE=${POSTGRES_DB}
 
   mariadb:
     image: docker.io/library/mariadb:10.11.2
