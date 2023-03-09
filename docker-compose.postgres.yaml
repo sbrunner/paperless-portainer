@@ -19,8 +19,6 @@ services:
     extends:
       file: docker-compose.lib.yaml
       service: postgres-upgrade
-    environment:
-      - PGHOST=db
     links:
       - db
 
@@ -37,7 +35,6 @@ volumes:
   media:
   pgdata:
   redisdata:
-  pgdata-9:
   pgdata-10:
   pgdata-11:
   pgdata-12:
