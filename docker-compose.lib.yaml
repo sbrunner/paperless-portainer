@@ -25,7 +25,7 @@ services:
       - POSTGRES_HOST_AUTH_METHOD
 
   postgres-upgrade:
-    image: /var/lib/postgresql tianon/postgres-upgrade:${PG_OLD}-to-${PG_NEW}
+    image: tianon/postgres-upgrade:${PG_OLD}-to-${PG_NEW}
     volumes:
       - ${PG_OLD_VOLUME}:/var/lib/postgresql/${PG_OLD}/data
       - ${PG_NEW_VOLUME}:/var/lib/postgresql/${PG_NEW}/data
