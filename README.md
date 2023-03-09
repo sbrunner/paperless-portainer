@@ -32,24 +32,35 @@ All the Paperless environment variable can be modified directly in Portainer.
 
 ## Database upgrades
 
-1. Create a new folder for the new database data.
+### Configure
 
-2. Configure the following environment variables:
+Configure the following environment variables:
 
     - `POSTGRES_UPGRADE_OLD_VOLUME`: Old database data folder.
     - `POSTGRES_UPGRADE_NEW_VOLUME`: New database data folder.
     - `POSTGRES_UPGRADE_OLD`: Old database version.
     - `POSTGRES_UPGRADE_NEW`: New database version.
-    - `POSTGRES_UPGRADE_COMMAND`: should be set to `pg_upgrade`.
+    - `POSTGRES_UPGRADE_COMMAND`: should be set to `true`.
 
-3. Upgrade the composition
+### Apply
 
-4. Stop the `db` service and start the `postgres-upgrade` service.
+1. Create a new folder for the new database data.
 
-5. Wait for the upgrade to finish.
+2. Use-it in the db service, Upgrade the composition
 
-6. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`.
+3. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `pg_upgrade`.
 
-7. Copy the `pg_hba.conf` file from the old database data folder to the new database data folder.
+4. Drop the create database on the `db` service with:
+
+    ```bash
+    psql --username="${POSTHRES_USER}" --command="CREATE DATABASE tmp;"
+    psql --username="${POSTHRES_USER}" --dbname=tmp --command="DROP DATABASE ${POSTGRES_DB};"
+    ```
+
+5. Stop the `db` service and start the `postgres-upgrade` service.
+
+6. Wait for the upgrade to finish.
+
+7. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`.
 
 8. Start the `db` service.
