@@ -22,7 +22,9 @@ Those files contain everything Paperless needs to run.
 
 5. Fill `Compose path` with the path of the Docker compose file you want to use.
 
-6. Click on `Deploy the stack`.
+6. Select `Automatic updates` to be updated automatically (good for security but not for stability).
+
+7. Click on `Deploy the stack`.
 
 ## Configuration
 
