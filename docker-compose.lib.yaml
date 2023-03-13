@@ -164,6 +164,7 @@ services:
       - PAPERLESS_ENABLE_UPDATE_CHECK
       - USERMAP_UID
       - USERMAP_GID
+      - PAPERLESS_DEBUG
       - OMP_SCHEDULE
       - OMP_NUM_THREADS
       - OMP_DYNAMIC
