@@ -76,6 +76,7 @@ services:
       - ${PAPERLESS_EXPORT_VOLUME}:/usr/src/paperless/export
       - ${PAPERLESS_CONSUME_VOLUME}:/usr/src/paperless/consume
     # Complete list: https://github.com/paperless-ngx/paperless-ngx/blob/main/paperless.conf.example
+    # Documentation: https://docs.paperless-ngx.com/configuration/
     environment:
       - PAPERLESS_REDIS=redis://broker:6379
       - PAPERLESS_DBENGINE
