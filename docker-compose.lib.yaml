@@ -75,6 +75,7 @@ services:
       - ${PAPERLESS_MEDIA_VOLUME}:/usr/src/paperless/media
       - ${PAPERLESS_EXPORT_VOLUME}:/usr/src/paperless/export
       - ${PAPERLESS_CONSUME_VOLUME}:/usr/src/paperless/consume
+    # Complete list: https://github.com/paperless-ngx/paperless-ngx/blob/main/paperless.conf.example
     environment:
       - PAPERLESS_REDIS=redis://broker:6379
       - PAPERLESS_DBENGINE
@@ -147,8 +148,10 @@ services:
       - PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE
       - PAPERLESS_CONVERT_MEMORY_LIMIT
       - PAPERLESS_CONVERT_TMPDIR
+      - PAPERLESS_PRE_CONSUME_SCRIPT
       - PAPERLESS_POST_CONSUME_SCRIPT
       - PAPERLESS_FILENAME_DATE_ORDER
+      - PAPERLESS_FILENAME_PARSE_TRANSFORMS
       - PAPERLESS_NUMBER_OF_SUGGESTED_DATES
       - PAPERLESS_THUMBNAIL_FONT_NAME
       - PAPERLESS_IGNORE_DATES
@@ -159,7 +162,6 @@ services:
       - PAPERLESS_WEBSERVER_WORKERS
       - PAPERLESS_BIND_ADDR
       - PAPERLESS_PORT
-      - PAPERLESS_OCR_LANGUAGES
       - PAPERLESS_ENABLE_FLOWER
       - PAPERLESS_ENABLE_UPDATE_CHECK
       - USERMAP_UID
