@@ -62,3 +62,12 @@ Configure the following environment variables:
 6. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`, Upgrade the composition
 
 7. Start the `db` service.
+
+## Contributing
+
+Install the pre-commit hooks:
+
+```bash
+pip install pre-commit
+pre-commit install --allow-missing-config
+```

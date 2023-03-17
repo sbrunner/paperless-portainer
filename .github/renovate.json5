@@ -14,6 +14,10 @@
   'pre-commit': { enabled: true },
   regexManagers: [
     {
+      fileMatch: ['^.pre-commit-config.yaml$'],
+      matchStrings: [" +- '?(?<depName>[^' @=]+)(@|==)(?<currentValue>[^' @=]+)'? # (?<datasource>.+)"],
+    },
+    {
       fileMatch: ['.*/.env$'],
       matchStrings: ['_TAG=(?<currentValue>[^\\s]+) +# (?<depName>[^\\s]+)'],
       datasourceTemplate: 'docker',
