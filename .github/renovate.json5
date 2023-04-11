@@ -1,7 +1,7 @@
 {
   extends: ['config:base'],
   timezone: 'Europe/Zurich',
-  schedule: 'on the first day of the month',
+  schedule: 'after 5pm on the first day of the month',
   labels: ['dependencies'],
   separateMajorMinor: true,
   prHourlyLimit: 0,
@@ -9,7 +9,7 @@
   lockFileMaintenance: {
     enabled: true,
     automerge: true,
-    schedule: 'on the first day of the month',
+    schedule: 'after 5pm on the first day of the month',
   },
   'pre-commit': { enabled: true },
   osvVulnerabilityAlerts: true,
