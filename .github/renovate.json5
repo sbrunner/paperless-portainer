@@ -27,6 +27,13 @@
       matchStrings: ['_TAG=(?<currentValue>[^\\s]+) +# (?<depName>[^\\s]+)'],
       datasourceTemplate: 'docker',
     },
+    {
+      fileMatch: ['^ci/config\\.yaml$'],
+      matchStrings: [
+        '.*https://raw\\.githubusercontent\\.com/(?<depName>[^\\s]+)/(?<currentValue>[0-9\\.]+)/.*',
+      ],
+      datasourceTemplate: 'github-tags',
+    },
   ],
   packageRules: [
     /** Automerge the patch, the minor and the dev dependency */
