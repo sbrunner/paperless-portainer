@@ -4,7 +4,7 @@
 version: '3.4'
 services:
   redis:
-    image: docker.io/library/redis:7.0.10
+    image: docker.io/library/redis:7.0.11
     restart: unless-stopped
     volumes:
       - ${REDIS_DATA_VOLUME}:/data
@@ -57,7 +57,7 @@ services:
       - MARIADB_DISABLE_UPGRADE_BACKUP
 
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:1.13.0
+    image: ghcr.io/paperless-ngx/paperless-ngx:1.14.2
     restart: unless-stopped
     ports:
       - ${PAPERLESS_PORT}:${PAPERLESS_INNER_PORT}
