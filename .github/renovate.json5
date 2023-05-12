@@ -51,5 +51,19 @@
       matchUpdateTypes: ['minor', 'patch'],
       groupName: 'all patch versions',
     },
+    {
+      matchUpdateTypes: ['minor'],
+      minimumReleaseAge: '14 days',
+    },
+    {
+      matchUpdateTypes: ['major'],
+      minimumReleaseAge: '3 months',
+    },
+    {
+      matchPackageNames: ['ghcr.io/paperless-ngx/paperless-ngx'],
+      matchUpdateTypes: ['patch'],
+      groupName: 'patch paperless',
+      schedule: 'at any time',
+    },
   ],
 }
