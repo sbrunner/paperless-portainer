@@ -63,7 +63,7 @@
       matchPackageNames: ['ghcr.io/paperless-ngx/paperless-ngx'],
       matchUpdateTypes: ['patch'],
       groupName: 'patch paperless',
-      schedule: 'at any time',
+      schedule: 'after 5pm on the first day of the month',
     },
   ],
 }
