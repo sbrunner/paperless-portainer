@@ -61,9 +61,13 @@
     },
     {
       matchPackageNames: ['ghcr.io/paperless-ngx/paperless-ngx'],
+      groupName: 'paperless',
+      schedule: 'at any time',
+    },
+    {
+      matchPackageNames: ['ghcr.io/paperless-ngx/paperless-ngx'],
       matchUpdateTypes: ['patch'],
       groupName: 'patch paperless',
-      schedule: 'at any time',
     },
   ],
 }
