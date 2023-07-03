@@ -28,7 +28,7 @@ repos:
     hooks:
       - id: codespell
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.7.1
+    rev: v3.0.0-alpha.9-for-vscode
     hooks:
       - id: prettier
         additional_dependencies:
@@ -37,7 +37,7 @@ repos:
           - prettier-plugin-toml@0.3.1 # npm
           - '@prettier/plugin-xml@0.12.0' # npm
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.9.0.2
+    rev: v0.9.0.5
     hooks:
       - id: shellcheck
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
@@ -70,11 +70,11 @@ repos:
       - id: copyright
       - id: workflows-require-timeout
   - repo: https://github.com/PyCQA/autoflake
-    rev: v2.1.1
+    rev: v2.2.0
     hooks:
       - id: autoflake
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.6.0
+    rev: v3.8.0
     hooks:
       - id: pyupgrade
         args:
