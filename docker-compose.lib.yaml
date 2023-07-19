@@ -21,6 +21,11 @@ services:
       - POSTGRES_INITDB_ARGS
       - POSTGRES_INITDB_WALDIR
       - POSTGRES_HOST_AUTH_METHOD
+      - PG_DATABASE=${POSTGRES_DB}
+      - PG_USER=${POSTGRES_USER}
+      - PG_PASSWORD=${POSTGRES_PASSWORD}
+      - PG_HOST=localhost
+      - PG_PORT=5432
 
   postgres-upgrade:
     image: tianon/postgres-upgrade:${POSTGRES_UPGRADE_OLD}-to-${POSTGRES_UPGRADE_NEW}
