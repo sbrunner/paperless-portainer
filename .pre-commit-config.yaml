@@ -33,8 +33,8 @@ repos:
       - id: prettier
         additional_dependencies:
           - prettier@2.8.8 # npm
-          - prettier-plugin-sh@0.12.8 # npm
-          - prettier-plugin-toml@0.3.1 # npm
+          - prettier-plugin-sh@0.13.1 # npm
+          - prettier-plugin-toml@0.3.5 # npm
           - '@prettier/plugin-xml@0.12.0' # npm
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.9.0.2
@@ -45,12 +45,12 @@ repos:
     hooks:
       - id: git-check
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.23.2
+    rev: 0.23.3
     hooks:
       - id: check-github-workflows
       - id: check-renovate
         additional_dependencies:
-          - pyjson5==1.6.3 # pypi
+          - pyjson5==1.6.4 # pypi
       - id: check-github-actions
       - id: check-jsonschema
         name: Check GitHub Workflows set timeout-minutes
@@ -70,11 +70,11 @@ repos:
       - id: copyright
       - id: workflows-require-timeout
   - repo: https://github.com/PyCQA/autoflake
-    rev: v2.1.1
+    rev: v2.2.0
     hooks:
       - id: autoflake
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.6.0
+    rev: v3.9.0
     hooks:
       - id: pyupgrade
         args:
@@ -84,7 +84,7 @@ repos:
     hooks:
       - id: isort
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.7.0
     hooks:
       - id: black
   - repo: https://github.com/sbrunner/jsonschema-validator
