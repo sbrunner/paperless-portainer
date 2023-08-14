@@ -69,5 +69,9 @@
       matchUpdateTypes: ['patch'],
       groupName: 'patch paperless',
     },
+    {
+      matchPackageNames: ['shellcheck-py/shellcheck-py'],
+      versioning: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
+    },
   ],
 }
