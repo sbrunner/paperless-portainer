@@ -4,13 +4,13 @@
 version: '3.4'
 services:
   redis:
-    image: docker.io/library/redis:7.0.12
+    image: docker.io/library/redis:7.2.0
     restart: unless-stopped
     volumes:
       - ${REDIS_DATA_VOLUME}:/data
 
   postgres:
-    image: docker.io/library/postgres:15.3
+    image: docker.io/library/postgres:15.4
     restart: unless-stopped
     volumes:
       - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
@@ -41,7 +41,7 @@ services:
       - POSTGRES_INITDB_ARGS=--username=${POSTGRES_USER}
 
   mariadb:
-    image: docker.io/library/mariadb:11.0.2
+    image: docker.io/library/mariadb:11.1.2
     restart: unless-stopped
     volumes:
       - ${MARIADB_DATA_VOLUME}:/var/lib/mysql
