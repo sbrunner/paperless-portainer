@@ -4,7 +4,7 @@
 version: '3.4'
 services:
   redis:
-    image: docker.io/library/redis:7.2.0
+    image: docker.io/library/redis:7.2.1
     restart: unless-stopped
     volumes:
       - ${REDIS_DATA_VOLUME}:/data
@@ -196,7 +196,7 @@ services:
       - OMP_ALLOCATOR
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:7.9.1
+    image: docker.io/gotenberg/gotenberg:7.9.2
     restart: unless-stopped
     # The gotenberg chromium route is used to convert .eml files. We do not
     # want to allow external content like tracking pixels or even javascript.
@@ -206,5 +206,5 @@ services:
       - --chromium-allow-list=file:///tmp/.*
 
   tika:
-    image: ghcr.io/paperless-ngx/tika:2.8.0-minimal
+    image: ghcr.io/paperless-ngx/tika:2.9.0-minimal
     restart: unless-stopped
