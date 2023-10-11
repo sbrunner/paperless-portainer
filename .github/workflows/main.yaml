@@ -9,6 +9,9 @@ on:
     tags:
       - '*'
 
+env:
+  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+
 jobs:
   main:
     runs-on: ubuntu-22.04
@@ -38,5 +41,3 @@ jobs:
       - run: .github/test-app docker-compose.mariadb-tika.yaml
       - run: .github/test-app docker-compose.sqlite.yaml
       - run: .github/test-app docker-compose.sqlite-tika.yaml
-env:
-  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
