@@ -18,6 +18,7 @@
     automerge: true,
   },
   regexManagers: [
+    /** Do updates on pre-commit additional dependencies */
     {
       fileMatch: ['^\\.pre\\-commit\\-config\\.yaml$'],
       matchStrings: [" +- '?(?<depName>[^' @=]+)(@|==)(?<currentValue>[^' @=]+)'? # (?<datasource>.+)"],
@@ -27,6 +28,7 @@
       matchStrings: ['_TAG=(?<currentValue>[^\\s]+) +# (?<depName>[^\\s]+)'],
       datasourceTemplate: 'docker',
     },
+    /** Do update on the schema present in the ci/config.yaml */
     {
       fileMatch: ['^ci/config\\.yaml$'],
       matchStrings: [
@@ -42,6 +44,7 @@
       matchUpdateTypes: ['minor', 'patch'],
       automerge: true,
     },
+    /** Auto merge the dev dependency update */
     {
       matchDepTypes: ['devDependencies'],
       automerge: true,
@@ -69,9 +72,23 @@
       matchUpdateTypes: ['patch'],
       groupName: 'patch paperless',
     },
+    /** Support the 4 parts of shellcheck-py version with a v prefix */
     {
       matchPackageNames: ['shellcheck-py/shellcheck-py'],
       versioning: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
     },
+    /** Group and auto merge the patch updates */
+    {
+      matchUpdateTypes: ['patch'],
+      groupName: 'all patch versions',
+      automerge: true,
+    },
+    /** Group and auto merge the minor updates */
+    {
+      matchUpdateTypes: ['minor'],
+      groupName: 'all minor versions',
+      automerge: true,
+    },
   ],
+  separateMinorPatch: true,
 }
