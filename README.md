@@ -68,9 +68,11 @@ Configure the following environment variables:
 
 6. On the container `paperless-ngx-postgres-upgrade-1` run `pg_upgrade`, waite that the upgrade is finished.
 
-7. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`.
+7. On the container `paperless-ngx-postgres-upgrade-1` run `cp ${PGDATAOLD}/pg_hba.conf ${PGDATANEW}/`.
 
-8. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
+8. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`.
+
+9. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
 
 ## Contributing
 
