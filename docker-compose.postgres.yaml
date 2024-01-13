@@ -15,6 +15,13 @@ services:
       file: docker-compose.lib.yaml
       service: postgres
 
+  postgres-vacuum:
+    extends:
+      file: docker-compose.lib.yaml
+      service: postgres-vacuum
+    links:
+      - db
+
   postgres-upgrade:
     extends:
       file: docker-compose.lib.yaml

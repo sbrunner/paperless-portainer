@@ -60,8 +60,8 @@ Configure the following environment variables:
 4. On the container `paperless-ngx-db-1` run
 
     ```bash
-    psql --username="${POSTGRES_USER}" --command="CREATE DATABASE tmp;"
-    psql --username="${POSTGRES_USER}" --dbname=tmp --command="DROP DATABASE ${POSTGRES_DB};"
+    psql --command="CREATE DATABASE tmp;"
+    psql --dbname=tmp --command="DROP DATABASE ${POSTGRES_DB};"
     ```
 
 5. Stop the `paperless-ngx-db-1` container.
