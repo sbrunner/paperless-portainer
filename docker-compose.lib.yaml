@@ -27,12 +27,24 @@ services:
       - PGHOST=localhost
       - PGPORT=5432
 
+  postgres-vacuum:
+    image: docker.io/library/postgres:15.4
+    command:
+      - psql
+      - -c
+      - VACUUM FULL VERBOSE ANALYZE
+    environment:
+      - PGDATABASE=${POSTGRES_DB}
+      - PGUSER=${POSTGRES_USER}
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+      - PGHOST=localhost
+      - PGPORT=5432
+
   postgres-upgrade:
     image: tianon/postgres-upgrade:${POSTGRES_UPGRADE_OLD}-to-${POSTGRES_UPGRADE_NEW}
-    command:
-      - ${POSTGRES_UPGRADE_COMMAND}
+    command: ${POSTGRES_UPGRADE_COMMAND}
     volumes:
-      - ${POSTGRES_UPGRADE_OLD_VOLUME}:/var/lib/postgresql/${POSTGRES_UPGRADE_OLD}/data
+      - ${POSTGRES_UPGRADE_OLD_VOLUME}:/var/lib/postgresql/${POSTGRES_UPGRADE_OLD}/data:ro
       - ${POSTGRES_UPGRADE_NEW_VOLUME}:/var/lib/postgresql/${POSTGRES_UPGRADE_NEW}/data
     environment:
       - PGUSER=${POSTGRES_USER}

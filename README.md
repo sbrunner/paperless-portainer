@@ -46,22 +46,31 @@ Configure the following environment variables:
 
 1. Create a new folder for the new database data.
 
-2. Use-it in the db service, set the `POSTGRES_UPGRADE_COMMAND` environment variable to `pg_upgrade`, Upgrade the composition.
+2. Update the environment variables:
 
-3. Drop the create database on the `db` service with:
+    - `POSTGRES_DATA_VOLUME` to the new folder.
+    - `POSTGRES_UPGRADE_OLD_VOLUME` to the old folder
+    - `POSTGRES_UPGRADE_NEW_VOLUME` ro the new folder
+    - `POSTGRES_UPGRADE_OLD` to the old Postgres major version
+    - `POSTGRES_UPGRADE_NEW` to the old Postgres major version.
+    - `POSTGRES_UPGRADE_COMMAND` to `sleep infinity` to be able to run the upgrade manually.
+
+3. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
+
+4. On the container `paperless-ngx-db-1` run
 
     ```bash
-    psql --username="${POSTHRES_USER}" --command="CREATE DATABASE tmp;"
-    psql --username="${POSTHRES_USER}" --dbname=tmp --command="DROP DATABASE ${POSTGRES_DB};"
+    psql --username="${POSTGRES_USER}" --command="CREATE DATABASE tmp;"
+    psql --username="${POSTGRES_USER}" --dbname=tmp --command="DROP DATABASE ${POSTGRES_DB};"
     ```
 
-4. Stop the `db` service and start the `postgres-upgrade` service.
+5. Stop the `paperless-ngx-db-1` container.
 
-5. Wait for the upgrade to finish.
+6. On the container `paperless-ngx-postgres-upgrade-1` run `pg_upgrade`, waite that the upgrade is finished.
 
-6. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`, Upgrade the composition
+7. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`.
 
-7. Start the `db` service.
+8. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
 
 ## Contributing
 
