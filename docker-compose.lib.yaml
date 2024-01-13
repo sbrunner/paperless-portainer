@@ -32,12 +32,12 @@ services:
     command:
       - psql
       - -c
-      - VACUUM FULL VERBOSE ANALYZE
+      - ALTER DATABASE ${POSTGRES_DB} REFRESH COLLATION VERSION; VACUUM FULL ANALYZE; REINDEX DATABASE ${POSTGRES_DB};
     environment:
       - PGDATABASE=${POSTGRES_DB}
       - PGUSER=${POSTGRES_USER}
       - PGPASSWORD=${POSTGRES_PASSWORD}
-      - PGHOST=localhost
+      - PGHOST=db
       - PGPORT=5432
 
   postgres-upgrade:

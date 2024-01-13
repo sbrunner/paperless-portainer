@@ -48,31 +48,29 @@ Configure the following environment variables:
 
 2. Update the environment variables:
 
-    - `POSTGRES_DATA_VOLUME` to the new folder.
     - `POSTGRES_UPGRADE_OLD_VOLUME` to the old folder
     - `POSTGRES_UPGRADE_NEW_VOLUME` ro the new folder
     - `POSTGRES_UPGRADE_OLD` to the old Postgres major version
     - `POSTGRES_UPGRADE_NEW` to the old Postgres major version.
-    - `POSTGRES_UPGRADE_COMMAND` to `sleep infinity` to be able to run the upgrade manually.
+    - `POSTGRES_UPGRADE_COMMAND` to `pg_upgrade; echo DONE; sleep infinity`.
 
 3. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
 
-4. On the container `paperless-ngx-db-1` run
+4. Stop the `paperless-ngx-db-1` container.
 
-    ```bash
-    psql --command="CREATE DATABASE tmp;"
-    psql --dbname=tmp --command="DROP DATABASE ${POSTGRES_DB};"
-    ```
+5. Restart the `paperless-ngx-postgres-upgrade-1` container an what that you see the message `DONE` in the logs.
 
-5. Stop the `paperless-ngx-db-1` container.
+6. In the `paperless-ngx-postgres-upgrade-1` container run :
 
-6. On the container `paperless-ngx-postgres-upgrade-1` run `pg_upgrade`, waite that the upgrade is finished.
+    - `/usr/lib/postgresql/${PG_MAJOR}/bin/vacuumdb --all --analyze-in-stages`
+    - `cp ${PGDATAOLD}/pg_hba.conf ${PGDATANEW}/`.
 
-7. On the container `paperless-ngx-postgres-upgrade-1` run `cp ${PGDATAOLD}/pg_hba.conf ${PGDATANEW}/`.
+7. Set the environment variables:
 
-8. Set the `POSTGRES_UPGRADE_COMMAND` environment variable to `true`.
+    - `POSTGRES_UPGRADE_COMMAND` to `true`.
+    - `POSTGRES_DATA_VOLUME` to the new folder.
 
-9. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
+8. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
 
 ## Contributing
 
