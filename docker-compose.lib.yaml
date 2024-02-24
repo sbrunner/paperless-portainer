@@ -53,7 +53,7 @@ services:
       - POSTGRES_INITDB_ARGS=--username=${POSTGRES_USER}
 
   mariadb:
-    image: docker.io/library/mariadb:11.2.2
+    image: docker.io/library/mariadb:11.2.3
     restart: unless-stopped
     volumes:
       - ${MARIADB_DATA_VOLUME}:/var/lib/mysql
@@ -74,7 +74,7 @@ services:
       - MARIADB_DISABLE_UPGRADE_BACKUP
 
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.5.0
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.5.3
     restart: unless-stopped
     ports:
       - ${PAPERLESS_PORT}:${PAPERLESS_INNER_PORT}
@@ -220,7 +220,7 @@ services:
       - OMP_ALLOCATOR
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.0.2
+    image: docker.io/gotenberg/gotenberg:8.0.3
     restart: unless-stopped
     # The gotenberg chromium route is used to convert .eml files. We do not
     # want to allow external content like tracking pixels or even javascript.
@@ -230,5 +230,5 @@ services:
       - --chromium-allow-list=file:///tmp/.*
 
   tika:
-    image: ghcr.io/paperless-ngx/tika:2.9.0-minimal
+    image: ghcr.io/paperless-ngx/tika:2.9.1-minimal
     restart: unless-stopped
