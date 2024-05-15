@@ -74,7 +74,7 @@ services:
       - MARIADB_DISABLE_UPGRADE_BACKUP
 
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.8.5
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.8.6
     restart: unless-stopped
     ports:
       - ${PAPERLESS_PORT}:${PAPERLESS_INNER_PORT}
