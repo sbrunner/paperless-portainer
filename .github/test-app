@@ -13,7 +13,7 @@ def _main() -> None:
     args = argparser.parse_args()
 
     try:
-        subprocess.run(["docker-compose", f"--file={args.file}", "up", "--detach"])
+        subprocess.run(["docker", "compose", f"--file={args.file}", "up", "--detach"])
         for _ in range(30):
             try:
                 result = requests.get("http://localhost:8000")
@@ -23,8 +23,8 @@ def _main() -> None:
             except requests.exceptions.ConnectionError:
                 pass
     finally:
-        subprocess.run(["docker-compose", f"--file={args.file}", "logs"])
-        subprocess.run(["docker-compose", f"--file={args.file}", "down"])
+        subprocess.run(["docker", "compose", f"--file={args.file}", "logs"])
+        subprocess.run(["docker", "compose", f"--file={args.file}", "down"])
 
 
 if __name__ == "__main__":
