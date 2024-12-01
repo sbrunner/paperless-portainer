@@ -10,7 +10,7 @@ services:
       - ${REDIS_DATA_VOLUME}:/data
 
   postgres:
-    image: docker.io/library/postgres:16.4
+    image: docker.io/library/postgres:16.5
     restart: unless-stopped
     volumes:
       - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
@@ -28,7 +28,7 @@ services:
       - PGPORT=5432
 
   postgres-vacuum:
-    image: docker.io/library/postgres:16.4
+    image: docker.io/library/postgres:16.5
     command:
       - psql
       - -c
@@ -223,7 +223,7 @@ services:
       - OMP_ALLOCATOR
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.12.0
+    image: docker.io/gotenberg/gotenberg:8.13.0
     restart: unless-stopped
     # The gotenberg chromium route is used to convert .eml files. We do not
     # want to allow external content like tracking pixels or even javascript.
