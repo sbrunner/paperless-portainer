@@ -53,7 +53,7 @@ services:
       - POSTGRES_INITDB_ARGS=--username=${POSTGRES_USER}
 
   mariadb:
-    image: docker.io/library/mariadb:11.5.2
+    image: docker.io/library/mariadb:11.6.2
     restart: unless-stopped
     volumes:
       - ${MARIADB_DATA_VOLUME}:/var/lib/mysql
@@ -223,7 +223,7 @@ services:
       - OMP_ALLOCATOR
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.13.0
+    image: docker.io/gotenberg/gotenberg:8.14.1
     restart: unless-stopped
     # The gotenberg chromium route is used to convert .eml files. We do not
     # want to allow external content like tracking pixels or even javascript.
