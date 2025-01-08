@@ -3,7 +3,6 @@
 #
 # - Instead of SQLite (default), PostgreSQL is used as the database server.
 
-version: '3.4'
 services:
   broker:
     extends:

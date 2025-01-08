@@ -1,7 +1,6 @@
 # Files containing the definition of all services used in the
 # Docker Compose file where we have coherent compositing.
 
-version: '3.4'
 services:
   redis:
     image: docker.io/library/redis:7.4.1

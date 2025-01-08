@@ -8,7 +8,6 @@
 #   Office documents (Word, Excel, Power Point and their LibreOffice counter-
 #   parts.
 
-version: '3.4'
 services:
   broker:
     extends:
