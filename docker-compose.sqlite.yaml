@@ -1,6 +1,5 @@
 # SQLite is used as the database. The SQLite file is stored in the data volume.
 
-version: '3.4'
 services:
   broker:
     extends:
