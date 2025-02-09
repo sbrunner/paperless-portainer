@@ -29,9 +29,8 @@ services:
   postgres-vacuum:
     image: docker.io/library/postgres:16.6
     command:
-      - psql
-      - -c
-      - ALTER DATABASE ${POSTGRES_DB} REFRESH COLLATION VERSION; SELECT current_database(); VACUUM FULL ANALYZE; REINDEX DATABASE ${POSTGRES_DB};
+      - bash -c
+      - psql -c 'ALTER DATABASE ${POSTGRES_DB} REFRESH COLLATION VERSION;'; psql -c 'VACUUM FULL ANALYZE;'; psql -c 'REINDEX DATABASE ${POSTGRES_DB};'
     environment:
       - PGDATABASE=${POSTGRES_DB}
       - PGUSER=${POSTGRES_USER}
