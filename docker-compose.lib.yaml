@@ -9,7 +9,7 @@ services:
       - ${REDIS_DATA_VOLUME}:/data
 
   postgres:
-    image: docker.io/library/postgres:17.1
+    image: docker.io/library/postgres:17.2
     restart: unless-stopped
     volumes:
       - ${POSTGRES_DATA_VOLUME}:/var/lib/postgresql/data
@@ -27,7 +27,7 @@ services:
       - PGPORT=5432
 
   postgres-vacuum:
-    image: docker.io/library/postgres:17.1
+    image: docker.io/library/postgres:17.2
     command:
       - bash
       - -c
