@@ -2,17 +2,16 @@
 
 ## Introduction
 
-This project will provide an alternative way to install `paperless-ngx` with [Protainer](https://docs.portainer.io).
+This project provides an alternative way to install `paperless-ngx` with [Portainer](https://docs.portainer.io).
 
-On a NAS it's difficult to install Paperless especially because we don't have `docker-compose`.
-This repository provides some Docker compose files to be able to install easily install and maintain
-Paperless on a NAS by using Portainer.
+On a NAS, it's difficult to install Paperless, especially because we don't have `docker-compose`.
+This repository provides Docker compose files to easily install and maintain Paperless on a NAS using Portainer.
 
-Those files contain everything Paperless needs to run.
+These files contain everything Paperless needs to run.
 
 ## Install
 
-1. On Portainer create a new stack.
+1. In Portainer, create a new stack.
 
 2. Set a name.
 
@@ -28,19 +27,18 @@ Those files contain everything Paperless needs to run.
 
 ## Configuration
 
-All the Paperless environment variable can be modified directly in Portainer.
+All the Paperless environment variables can be modified directly in Portainer.
 
-## Database upgrades
+## Database Upgrades
 
 ### Configure
 
-Configure the following environment variables:
+Set the following environment variables:
 
-    - `POSTGRES_UPGRADE_OLD_VOLUME`: Old database data folder.
-    - `POSTGRES_UPGRADE_NEW_VOLUME`: New database data folder.
-    - `POSTGRES_UPGRADE_OLD`: Old database version.
-    - `POSTGRES_UPGRADE_NEW`: New database version.
-    - `POSTGRES_UPGRADE_COMMAND`: should be set to `true`.
+- `POSTGRES_UPGRADE_OLD_VOLUME`: Old database data folder.
+- `POSTGRES_UPGRADE_NEW_VOLUME`: New database data folder.
+- `POSTGRES_UPGRADE_OLD`: Old database version.
+- `POSTGRES_UPGRADE_NEW`: New database version.
 
 ### Apply
 
@@ -48,29 +46,26 @@ Configure the following environment variables:
 
 2. Update the environment variables:
 
-    - `POSTGRES_UPGRADE_OLD_VOLUME` to the old folder
-    - `POSTGRES_UPGRADE_NEW_VOLUME` ro the new folder
-    - `POSTGRES_UPGRADE_OLD` to the old Postgres major version
-    - `POSTGRES_UPGRADE_NEW` to the old Postgres major version.
-    - `POSTGRES_UPGRADE_COMMAND` to `pg_upgrade; echo DONE; sleep infinity`.
+    - `POSTGRES_UPGRADE_OLD_VOLUME` to the old folder.
+    - `POSTGRES_UPGRADE_NEW_VOLUME` to the new folder.
+    - `POSTGRES_UPGRADE_OLD` to the old Postgres major version.
+    - `POSTGRES_UPGRADE_NEW` to the new Postgres major version.
+    - `POSTGRES_DATA_VOLUME` to the new Postgres major version.
 
-3. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
+3. Click on `Save settings`, then `Pull and redeploy`, and wait for the composition to start.
 
-4. Stop the `paperless-ngx-db-1` container.
+4. Stop the `paperless-ngx-paperless-1` container.
 
-5. Restart the `paperless-ngx-postgres-upgrade-1` container an what that you see the message `DONE` in the logs.
+5. Stop the `paperless-ngx-db-1` container.
 
-6. In the `paperless-ngx-postgres-upgrade-1` container run :
+6. In the `paperless-ngx-postgres-upgrade-1` container, run the following commands:
 
+    - `apt update && apt install sudo`
+    - `sudo -E -u postgres /usr/lib/postgresql/${PG_MAJOR}/bin/pg_upgrade`
     - `/usr/lib/postgresql/${PG_MAJOR}/bin/vacuumdb --all --analyze-in-stages`
-    - `cp ${PGDATAOLD}/pg_hba.conf ${PGDATANEW}/`.
+    - `cp ${PGDATAOLD}/pg_hba.conf ${PGDATANEW}/`
 
-7. Set the environment variables:
-
-    - `POSTGRES_UPGRADE_COMMAND` to `true`.
-    - `POSTGRES_DATA_VOLUME` to the new folder.
-
-8. Click on `Save settings`, then `Pull and redeploy`, wait that the composition is started.
+7. Start the `paperless-ngx-db-1` and `paperless-ngx-paperless-1` containers.
 
 ## Contributing
 
