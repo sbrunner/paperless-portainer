@@ -62,7 +62,6 @@ Set the following environment variables:
 
     - `apt update && apt install sudo`
     - `sudo -E -u postgres /usr/lib/postgresql/${PG_MAJOR}/bin/pg_upgrade`
-    - `/usr/lib/postgresql/${PG_MAJOR}/bin/vacuumdb --all --analyze-in-stages`
     - `cp ${PGDATAOLD}/pg_hba.conf ${PGDATANEW}/`
 
 7. Start the `paperless-ngx-db-1` and `paperless-ngx-paperless-1` containers.
