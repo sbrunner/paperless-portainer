@@ -32,7 +32,7 @@ repos:
           - '@prettier/plugin-xml@0.12.0' # npm
         exclude: |-
           (?x)^(
-              \.env
+            \.env
           )$
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
