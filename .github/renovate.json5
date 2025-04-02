@@ -49,4 +49,5 @@
       matchDepNames: ['ghcr.io/paperless-ngx/paperless-ngx'],
     },
   ],
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
 }
