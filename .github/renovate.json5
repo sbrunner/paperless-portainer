@@ -13,10 +13,10 @@
   ],
   customManagers: [
     {
-      fileMatch: ['.*/.env$'],
       matchStrings: ['_TAG=(?<currentValue>[^\\s]+) +# (?<depName>[^\\s]+)'],
       datasourceTemplate: 'docker',
       customType: 'regex',
+      managerFilePatterns: ['/.*/.env$/'],
     },
   ],
   packageRules: [
