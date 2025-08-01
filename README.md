@@ -45,7 +45,6 @@ Set the following environment variables:
 1. Create a new folder for the new database data.
 
 2. Update the environment variables:
-
     - `POSTGRES_UPGRADE_OLD_VOLUME` to the old folder.
     - `POSTGRES_UPGRADE_NEW_VOLUME` to the new folder.
     - `POSTGRES_UPGRADE_OLD` to the old Postgres major version.
@@ -59,7 +58,6 @@ Set the following environment variables:
 5. Stop the `paperless-ngx-db-1` container.
 
 6. In the `paperless-ngx-postgres-upgrade-1` container, run the following commands:
-
     - `apt update && apt install sudo`
     - `sudo -E -u postgres /usr/lib/postgresql/${PG_MAJOR}/bin/pg_upgrade`
     - `cp ${PGDATAOLD}/pg_hba.conf ${PGDATANEW}/`
