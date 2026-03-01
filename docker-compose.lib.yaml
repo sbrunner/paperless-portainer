@@ -52,7 +52,7 @@ services:
       - POSTGRES_INITDB_ARGS=--username=${POSTGRES_USER}
 
   mariadb:
-    image: docker.io/library/mariadb:11.8.6
+    image: docker.io/library/mariadb:12.0.2
     restart: unless-stopped
     volumes:
       - ${MARIADB_DATA_VOLUME}:/var/lib/mysql
