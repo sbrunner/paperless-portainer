@@ -3,7 +3,7 @@
 
 services:
   redis:
-    image: docker.io/library/redis:8.6.0
+    image: docker.io/library/redis:8.6.1
     restart: unless-stopped
     volumes:
       - ${REDIS_DATA_VOLUME}:/data
